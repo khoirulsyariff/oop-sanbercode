@@ -1,0 +1,54 @@
+1. Buat Database
+create database myshop;
+
+2. Membuat Table Didalam Database
+Memakai database yang sudah dibuat: use myshop;
+    a. User
+    create table users(
+        -> Id int primary key auto_increment,
+        -> name varchar(255),
+        -> email varchar(255),
+        -> password varchar(255)
+        -> );
+    b. Items
+    create table items(
+        -> Id int primary key auto_increment,
+        -> name varchar(255),
+        -> description varchar(255),
+        -> price int,
+        -> stock int,
+        -> category_id int,
+        -> foreign key(category_id) references items(id)
+        -> );
+    c. Categories
+    create table categories(
+        -> Id int primary key auto_increment,
+        -> name varchar(255)
+        -> );
+
+3. Memasukkan Data pada table
+    a. User
+        insert into users values (NULL, 'John Doe', 'john@doe.com', 'john123');
+        insert into users values (NULL, 'Jane Doe', 'jane@doe.com', 'jenita123');
+    B.Categories
+        insert into categories values (NULL, 'gadget');
+        insert into categories values (NULL, 'cloth');
+        insert into categories values (NULL, 'men');
+        insert into categories values (NULL, 'woman');
+        insert into categories values (NULL, 'branded');
+    C. Items
+        insert into items value (1, 'Sumsangb50', 'hape keren dari merek sumsang', '4000000', '100', 1);
+        insert into items value (2, 'Uniklooh', 'baju keren dari brand ternama', '500000', '50', 2);
+        insert into items value (3, 'IMHO Watch', 'jam tangan anak yang jujur banget', '2000000', '10', 3);
+
+4. Mengambil Data dr database
+    a. Mengambil Data User
+        select id,name,email from users;
+    b. Selection
+        select * from items where price >= '1000000';
+        select * from items WHERE name LIKE '%Uniklo%';
+    c. Menampilkan menggunakan JOIN
+        SELECT items.nama, items.description, item.price, item.stock, kategori.nama  FROM items JOIN kategori ON items.kategori_id = kategori.id; 
+
+5. Mengubah Data dr database
+    update items set price='912500000'92  where id=1;
